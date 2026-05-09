@@ -1,1 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>Brasilnets • Internet & Telefonia</title>
+  <!-- Bootstrap 5 CSS + ícones -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <!-- Favicon dinâmico (SVG embutido via base64) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23005B9F'/%3E%3Cstop offset='100%25' style='stop-color:%2300C6B7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='45' fill='url(%23g)'/%3E%3Cpath d='M30 42 L50 28 L70 42 L62 52 L70 62 L50 76 L30 62 L38 52 Z' fill='white' opacity='0.95'/%3E%3Ccircle cx='50' cy='52' r='6' fill='%23005B9F'/%3E%3Ctext x='50' y='90' font-size='14' font-weight='bold' font-family='Arial' fill='white' text-anchor='middle'%3EBR%3C/text%3E%3C/svg%3E">
+  <style>
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      scroll-behavior: smooth;
+      background-color: #f8fafc;
+    }
+    :root {
+      --azul-primario: #005B9F;
+      --azul-vibrante: #0077cc;
+      --ciano-detalhe: #00C6B7;
+      --cinza-escuro: #2d3748;
+      --laranja-destaque: #f97316;
+    }
+    .navbar {
+      background: rgba(10, 25, 47, 0.95);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      padding: 0.8rem 0;
+    }
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.7rem;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #ffffff 0%, #d9e9ff 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .navbar-brand i {
+      font-size: 2rem;
+      color: var(--ciano-detalhe);
+      background: none;
+      -webkit-text-fill-color: initial;
+      background-clip: unset;
+    }
+    .nav-link {
+      color: #e2e8f0 !important;
+      font-weight: 500;
+      margin: 0 0.25rem;
+      transition: 0.25s;
+      border-radius: 30px;
+      padding: 0.5rem 1.3rem !important;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: white !important;
+      background: rgba(255,255,255,0.15);
+    }
+    .hero-section {
+      background: linear-gradient(125deg, #0a1929 0%, #0b2b44 60%, #003357 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 7rem 0 5rem;
+      color: white;
+    }
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(0,198,183,0.2) 0%, transparent 70%);
+    }
+    .hero-title {
+      font-weight: 800;
+      font-size: 3.3rem;
+      line-height: 1.2;
+    }
+    .highlight {
+      color: var(--ciano-detalhe);
+    }
+    .info-card {
+      background: white;
+      border-radius: 28px;
+      padding: 2rem;
+      box-shadow: 0 25px 45px -12px rgba(0,0,0,0.12);
+      transition: transform 0.3s;
+      border: 1px solid rgba(0,91,159,0.08);
+      height: 100%;
+    }
+    .info-card:hover {
+      transform: translateY(-8px);
+    }
+    .icon-wrapper {
+      width: 65px;
+      height: 65px;
+      background: linear-gradient(135deg, #e6f0ff, #cce5ff);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .icon-wrapper i {
+      font-size: 2.5rem;
+      color: var(--azul-primario);
+    }
+    .footer-style {
+      background: #0b1e33;
+      color: #ccdbe9;
+      font-size: 0.95rem;
+      border-top: 4px solid var(--ciano-detalhe);
+    }
+    .btn-primary-custom {
+      background: var(--azul-primario);
+      border: none;
+      border-radius: 40px;
+      padding: 0.8rem 2rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: 0.3s;
+      background: linear-gradient(145deg, #0066b3, #004a80);
+    }
+    .btn-primary-custom:hover {
+      background: linear-gradient(145deg, #0077cc, #00335a);
+      transform: scale(1.02);
+      box-shadow: 0 10px 25px rgba(0,91,159,0.4);
+    }
+    .cnpj-badge {
+      background: rgba(255,255,255,0.08);
+      border-radius: 50px;
+      padding: 0.4rem 1.2rem;
+      color: #bdd3f0;
+      font-size: 0.9rem;
+      backdrop-filter: blur(5px);
+    }
+    .social-icon {
+      font-size: 1.8rem;
+      color: #a0c4e8;
+      transition: 0.2s;
+      margin: 0 6px;
+    }
+    .social-icon:hover {
+      color: var(--ciano-detalhe);
+      transform: translateY(-3px);
+    }
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
 
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <i class="bi bi-router-fill"></i> Brasilnets
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navPrincipal" 
+            style="border-color: rgba(255,255,255,0.5);">
+      <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navPrincipal">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+        <li class="nav-item"><a class="nav-link active" href="#">Início</a></li>
+        <li class="nav-item"><a class="nav-link" href="#servicos">Serviços</a></li>
+        <li class="nav-item"><a class="nav-link" href="#sobre">Sobre Nós</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+        <li class="nav-item ms-2 d-none d-lg-block">
+          <span class="cnpj-badge"><i class="bi bi-shield-check"></i> CNPJ 10.517.947/0001-28</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section d-flex align-items-center">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7">
+        <p class="text-uppercase fw-semibold mb-2" style="color: #00C6B7; letter-spacing: 2px;">
+          <i class="bi bi-broadcast me-2"></i>Provedor de Internet Regional
+        </p>
+        <h1 class="hero-title mb-4">
+          Conexão que <span class="highlight">transforma</span> seu mundo digital
+        </h1>
+        <p class="lead mb-4" style="color: #d0dfee; max-width: 550px;">
+          Internet ultrarrápida, telefonia inteligente e suporte dedicado para Joinville e região.
+          Desde 2008 levando qualidade até você.
+        </p>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#contato" class="btn btn-primary-custom btn-lg">
+            <i class="bi bi-telephone-fill me-2"></i>Fale Conosco
+          </a>
+          <a href="#servicos" class="btn btn-outline-light btn-lg rounded-pill px-4">
+            <i class="bi bi-speedometer2 me-2"></i>Planos
+          </a>
+        </div>
+        <div class="mt-4 d-flex align-items-center">
+          <i class="bi bi-geo-alt-fill me-2" style="color: #00C6B7; font-size: 1.3rem;"></i>
+          <span style="color: #b9cded;">Rua Toribio Soares Pereira, 570 • Iririu, Joinville/SC</span>
+        </div>
+      </div>
+      <div class="col-lg-5 text-center">
+        <div style="background: rgba(255,255,255,0.06); border-radius: 40px; padding: 2rem; backdrop-filter: blur(8px);">
+          <i class="bi bi-cloud-check-fill" style="font-size: 8rem; color: #00C6B7; opacity: 0.9;"></i>
+          <h3 class="mt-3 fw-bold">+15 anos de experiência</h3>
+          <p class="mb-0" style="color: #cbddec;">Fundada em 28/11/2008</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cards de diferencial -->
+<section class="py-5" style="background: #f1f6fd;">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="info-card text-center">
+          <div class="icon-wrapper mx-auto">
+            <i class="bi bi-wifi"></i>
+          </div>
+          <h5 class="fw-bold">Fibra Óptica de Alta Velocidade</h5>
+          <p class="text-secondary">Navegação estável, upload e download simétricos. Ideal para streaming, games e home office.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="info-card text-center">
+          <div class="icon-wrapper mx-auto">
+            <i class="bi bi-telephone-plus-fill"></i>
+          </div>
+          <h5 class="fw-bold">Telefonia Inteligente</h5>
+          <p class="text-secondary">Soluções em VoIP com qualidade cristalina e economia real para sua casa ou empresa.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="info-card text-center">
+          <div class="icon-wrapper mx-auto">
+            <i class="bi bi-headset"></i>
+          </div>
+          <h5 class="fw-bold">Suporte Local 24h</h5>
+          <p class="text-secondary">Equipe técnica em Joinville, pronta para atender com rapidez e eficiência.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Serviços + ícones -->
+<section id="servicos" class="py-5 bg-white">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold display-6">Nossos <span style="color: #005B9F;">Serviços</span></h2>
+      <p class="text-secondary lead">Tecnologia de ponta para conectar pessoas e negócios</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6">
+        <div class="card border-0 shadow-sm h-100 rounded-4 p-3">
+          <div class="card-body text-center">
+            <i class="bi bi-house-check-fill display-4 text-primary mb-3"></i>
+            <h5 class="fw-bold">Internet Residencial</h5>
+            <p class="text-muted">Planos a partir de 300 Mega com Wi-Fi grátis.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="card border-0 shadow-sm h-100 rounded-4 p-3">
+          <div class="card-body text-center">
+            <i class="bi bi-building-fill display-4 text-primary mb-3"></i>
+            <h5 class="fw-bold">Internet Empresarial</h5>
+            <p class="text-muted">Link dedicado, IP fixo e SLA garantido.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="card border-0 shadow-sm h-100 rounded-4 p-3">
+          <div class="card-body text-center">
+            <i class="bi bi-phone-vibrate-fill display-4 text-primary mb-3"></i>
+            <h5 class="fw-bold">Telefonia Fixa</h5>
+            <p class="text-muted">Linhas digitais com DDD ilimitado.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="card border-0 shadow-sm h-100 rounded-4 p-3">
+          <div class="card-body text-center">
+            <i class="bi bi-tv-fill display-4 text-primary mb-3"></i>
+            <h5 class="fw-bold">TV por Assinatura</h5>
+            <p class="text-muted">Pacotes com canais HD e streaming.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sobre / Frase institucional -->
+<section id="sobre" class="py-5" style="background: linear-gradient(120deg, #eef6ff 0%, #ffffff 100%);">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-4">
+        <span class="badge bg-primary mb-3 px-3 py-2 rounded-pill"><i class="bi bi-star-fill me-1"></i> Desde 2008</span>
+        <h2 class="fw-bold mb-3">Brasilnets Soluções em Internet e Telefonia LTDA</h2>
+        <p class="text-secondary fs-5">
+          "Conectar você ao mundo com <strong>estabilidade, respeito e inovação</strong>. Nossa missão é oferecer uma experiência digital completa, com suporte humano e tecnologia de alto nível."
+        </p>
+        <ul class="list-unstyled mt-4">
+          <li class="mb-2"><i class="bi bi-check-circle-fill me-2" style="color: #00C6B7;"></i> <strong>Razão Social:</strong> Brasilnets Solucoes em Internet e Telefonia LTDA</li>
+          <li class="mb-2"><i class="bi bi-check-circle-fill me-2" style="color: #00C6B7;"></i> <strong>Nome Fantasia:</strong> Brasilnets Solucoes em Internet e Telefonia LTDA</li>
+          <li class="mb-2"><i class="bi bi-check-circle-fill me-2" style="color: #00C6B7;"></i> <strong>CNPJ:</strong> 10.517.947/0001-28</li>
+          <li class="mb-2"><i class="bi bi-check-circle-fill me-2" style="color: #00C6B7;"></i> <strong>Data Abertura:</strong> 28/11/2008</li>
+        </ul>
+      </div>
+      <div class="col-lg-6">
+        <div class="p-4 bg-white rounded-4 shadow">
+          <div class="d-flex align-items-center mb-3">
+            <i class="bi bi-chat-quote-fill display-6 me-3" style="color: #005B9F;"></i>
+            <h4 class="fw-bold mb-0">Compromisso com Joinville</h4>
+          </div>
+          <p class="text-secondary"><i class="bi bi-pin-map-fill me-1"></i> Rua Toribio Soares Pereira, 570 - Bairro Iririu, Joinville - SC, 89227-200</p>
+          <p class="text-secondary">Atendemos todo o perímetro urbano e regiões próximas com fibra óptica de última geração.</p>
+          <hr>
+          <p class="fw-semibold mb-1"><i class="bi bi-telephone-fill me-2"></i>(47) 3437-1631</p>
+          <p class="fw-semibold"><i class="bi bi-envelope-fill me-2"></i>contato@brasilnets.net.br</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Frase impacto / cores -->
+<div class="py-4" style="background: #005B9F; color: white;">
+  <div class="container text-center">
+    <p class="fs-4 fw-light mb-0">“Internet de verdade se faz com <span style="color: #00C6B7; font-weight: bold;">fibra, suporte e gente que cuida</span>.”</p>
+  </div>
+</div>
+
+<!-- Contato -->
+<section id="contato" class="py-5 bg-white">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+          <div class="row g-0">
+            <div class="col-md-5 bg-dark text-white p-4 d-flex flex-column justify-content-center" style="background: linear-gradient(150deg, #003b66, #001c33);">
+              <h3 class="fw-bold mb-3"><i class="bi bi-headset me-2"></i>Fale com a gente</h3>
+              <p class="mb-4">Estamos prontos para te atender.</p>
+              <div class="mb-3">
+                <i class="bi bi-telephone-fill me-2 fs-5"></i> <strong>(47) 3437-1631</strong>
+              </div>
+              <div class="mb-3">
+                <i class="bi bi-whatsapp me-2 fs-5"></i> <strong>WhatsApp: (47) 9 9999-1631</strong>
+              </div>
+              <div class="mb-3">
+                <i class="bi bi-envelope-fill me-2"></i> contato@brasilnets.net.br
+              </div>
+              <div>
+                <i class="bi bi-clock-fill me-2"></i> Seg a Sex: 08h às 18h
+              </div>
+            </div>
+            <div class="col-md-7 p-4">
+              <h4 class="fw-bold mb-3">Envie sua mensagem</h4>
+              <form>
+                <div class="mb-3">
+                  <input type="text" class="form-control" placeholder="Seu nome">
+                </div>
+                <div class="mb-3">
+                  <input type="email" class="form-control" placeholder="E-mail">
+                </div>
+                <div class="mb-3">
+                  <textarea class="form-control" rows="3" placeholder="Como podemos ajudar?"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary-custom w-100"><i class="bi bi-send-fill me-2"></i>Enviar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer-style pt-5 pb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 mb-3">
+        <h4 class="fw-bold text-white"><i class="bi bi-router-fill me-2"></i>Brasilnets</h4>
+        <p>Soluções em Internet e Telefonia LTDA<br>CNPJ: 10.517.947/0001-28</p>
+        <p class="small">Situação Cadastral: Ativa desde 28/11/2008</p>
+        <div class="mt-3">
+          <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="social-icon"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h5 class="text-white"><i class="bi bi-geo-alt-fill me-1"></i> Endereço</h5>
+        <p>Rua Toribio Soares Pereira, 570<br>Bairro Iririu - Joinville/SC<br>CEP: 89227-200</p>
+        <p class="mt-2"><i class="bi bi-telephone-fill me-1"></i> (47) 3437-1631</p>
+      </div>
+      <div class="col-md-3">
+        <h5 class="text-white"><i class="bi bi-info-circle-fill me-1"></i> Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-decoration-none" style="color: #b0c8e5;">Planos Residenciais</a></li>
+          <li><a href="#" class="text-decoration-none" style="color: #b0c8e5;">Empresarial</a></li>
+          <li><a href="#" class="text-decoration-none" style="color: #b0c8e5;">Central de Atendimento</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr style="border-color: #2d4a69;">
+    <div class="text-center small">
+      © 2025 Brasilnets Soluções em Internet e Telefonia LTDA - Todos os direitos reservados. | Provedor Joinville.
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
